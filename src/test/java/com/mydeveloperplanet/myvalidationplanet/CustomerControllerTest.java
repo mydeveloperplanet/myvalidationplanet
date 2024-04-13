@@ -1,9 +1,11 @@
 package com.mydeveloperplanet.myvalidationplanet;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.mydeveloperplanet.myvalidationplanet.domain.Customer;
@@ -56,7 +58,10 @@ class CustomerControllerTest {
         mvc.perform(post("/customer")
                         .contentType("application/json")
                         .content(body))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("firstName", equalTo("John")))
+                .andExpect(jsonPath("lastName", equalTo("Doe")))
+                .andExpect(jsonPath("customerId", equalTo(1)));
 
     }
 

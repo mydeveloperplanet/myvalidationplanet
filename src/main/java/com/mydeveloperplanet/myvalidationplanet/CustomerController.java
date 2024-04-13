@@ -4,7 +4,6 @@ import com.mydeveloperplanet.myvalidationplanet.api.CustomerApi;
 import com.mydeveloperplanet.myvalidationplanet.model.Customer;
 import com.mydeveloperplanet.myvalidationplanet.model.CustomerFullData;
 
-import org.openapitools.jackson.nullable.JsonNullable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,8 +34,8 @@ class CustomerController implements CustomerApi {
     private CustomerFullData domainToApi(com.mydeveloperplanet.myvalidationplanet.domain.Customer customer) {
         CustomerFullData cfd = new CustomerFullData();
         cfd.setCustomerId(customer.getCustomerId());
-        cfd.setFirstName(JsonNullable.of(customer.getFirstName()));
-        cfd.setLastName(JsonNullable.of(customer.getLastName()));
+        cfd.setFirstName(customer.getFirstName());
+        cfd.setLastName(customer.getLastName());
         return cfd;
     }
 
